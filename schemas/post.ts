@@ -9,6 +9,7 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -18,16 +19,18 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'author',
       title: 'Author',
       type: 'reference',
-      to: {type: 'author'},
+      to: {type: 'user'},
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'mainImage',
-      title: 'Main image',
+      name: 'image',
+      title: 'Image',
       type: 'image',
       options: {
         hotspot: true,
@@ -38,6 +41,7 @@ export default defineType({
       title: 'Categories',
       type: 'array',
       of: [{type: 'reference', to: {type: 'category'}}],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'publishedAt',
@@ -48,18 +52,38 @@ export default defineType({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'brief',
+      title: 'Brief',
+      type: 'text',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'isEditorsPick',
+      title: "Is Editor's Pick",
+      type: 'boolean',
+    }),
+    defineField({
+      name: 'viewCount',
+      title: 'View Count',
+      type: 'number',
+    }),
+    defineField({
+      name: 'likesCount',
+      title: 'Likes Count',
+      type: 'number',
+    }),
+    defineField({
+      name: 'sharesCount',
+      title: 'Shares Count',
+      type: 'number',
+    }),
+    defineField({
+      name: 'relevanceScore',
+      title: 'Relevance Score',
+      type: 'number',
     }),
   ],
-
-  preview: {
-    select: {
-      title: 'title',
-      author: 'author.name',
-      media: 'mainImage',
-    },
-    prepare(selection) {
-      const {author} = selection
-      return {...selection, subtitle: author && `by ${author}`}
-    },
-  },
 })

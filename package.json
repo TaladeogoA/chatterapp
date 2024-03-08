@@ -1,5 +1,5 @@
 {
-  "name": "chatter",
+  "name": "chatter-sanity",
   "private": true,
   "version": "1.0.0",
   "main": "package.json",
@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "sanity": "^3.19.0",
+    "sanity-plugin-media": "^2.2.4",
     "styled-components": "^6.0.7"
   },
   "devDependencies": {
